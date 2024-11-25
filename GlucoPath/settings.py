@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'blog',
     'appointments',
     'blood_sugar',
+    'ckeditor',
     'django_summernote'
 ]
 

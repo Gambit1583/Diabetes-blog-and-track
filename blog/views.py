@@ -2,13 +2,14 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import TemplateView
 from .models import Post
 from .forms import PostForm, CommentForm
-from blog.models import Post
 
 class HomePage(TemplateView):
-    """
-    Displays home page
-    """
     template_name = 'index.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['posts'] = Post.objects.all()
+        return context
 
 # Lists all blog posts
 def post_list(request):
@@ -30,6 +31,9 @@ def post_detail(request, id):
     else:
         comment_form = CommentForm()
     return render(request, 'blog/post_detail.html', {'post': post, 'comments': comments, 'comment_form': comment_form})
+
+
+
 
 
 

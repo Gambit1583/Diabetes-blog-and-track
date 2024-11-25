@@ -1,33 +1,36 @@
 {% load static %}
-
+{% load clean_content %}
+<!DOCTYPE html>
 <html lang="en"> 
-    <head> 
-        <meta charset="UTF-8"> 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-        <title>GlucoPath Bloggers Corner</title>
-    </head>
-    <body>
-        <header>
-            <h1>Blogger Corner</h1>
-        </header>
-        <main>
-            <section>
-                {% if posts %}
-                    <ul>
-                        {% for post in posts %}
-                            <li>
-                                <h4>{{ post.title }}</h4>
-                                <p>{{ post.content|truncatewords:50 }}</p>
-                                <p><a href="{url 'post_detail' post.id %}">Read More</a></p>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                {% else %}
-                    <p>No posts available.</p>
-                {% endif %}
-            </section>
-        </main>
-        <footer>
-            <p>&copy; 2024 Glucopath & Gambit1583 developments. All rights reserved.</p>
-        </footer>
-    </body>
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>GlucoPath Bloggers Corner</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Bloggers Corner</h1>
+    </header>
+    <main>
+        <section>
+            {% if posts %}
+                <ul>
+                    {% for post in posts %}
+                        <li>
+                            <h4>{{ post.title }}</h4>
+                            <p>{{ post.extract|clean_html|truncatewords:150|safe }}</p> <!-- Using the safe and clean filters here -->
+                            <p><a href="{% url 'post_detail' post.id %}">Read More</a></p> <!-- Corrected template tag -->
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No posts available.</p>
+            {% endif %}
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Glucopath & Gambit1583 developments. All rights reserved.</p>
+    </footer>
+</body>
+</html>
