@@ -1,4 +1,3 @@
-from . import views
 from django.urls import path
 from .views import HomePage, post_list, post_detail
 

@@ -5,27 +5,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GlucoPath Home Page</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" >
+    <title>GlucoPath</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
     <header>
         <h1>Welcome to GlucoPath</h1>
-        <h2>Your home for managing and tracking your diabetes!</h2>
+        <h2>Your home for Blogging, Tracking and Managing your diabetes!</h2>
         <nav>
-            <ul>
-                <li><a href="{% url 'post_list' %}">Blog Posts</a></li>
-               
-            </ul>
+            <a href="/">Home</a> | 
+            <a href="/blood-sugar/">Track Blood Sugar</a> | 
+            <a href="/appointments/">Appointments</a> | 
+            <!-- <a href="/specialists/">Find Specialists</a> --> <!-- Commented out for now -->
         </nav>
     </header>
-    <main> <h2>Your Journey to Better Health Management Starts Here</h2> 
-            <p>Blog, Track your progress, connect with specialists, and manage your carbohydrate intake all in one place.</p> 
-        </main> 
-        <footer> 
-            <p>&copy; 2024 Glocopath & Gambit1583 developments. All rights reserved.</p> 
-        </footer>
+    <main>
+        <h2>Blog Posts</h2>
+        {% if posts %}
+            {% for post in posts %}
+                <article>
+                    <h3><a href="{% url 'post_detail' post.id %}">{{ post.title }}</a></h3>
+                    <p>{{ post.content|truncatewords:50 }}</p>
+                </article>
+            {% endfor %}
+        {% else %}
+        <p>No posts available.</p>
+        {% endif %}
+    </main>
+    <footer>
+        <p>&copy; 2024 GlucoPath & Gambit1583 developments. All rights reserved.</p>
+    </footer>
 </body>
 </html>
+
+
+
 
 
