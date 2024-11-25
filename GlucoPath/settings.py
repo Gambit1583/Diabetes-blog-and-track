@@ -53,6 +53,8 @@ INSTALLED_APPS = [
     'cloudinary_storage',
     'cloudinary',
     'blog',
+    'appointments',
+    'blood_sugar',
     'django_summernote'
 ]
 
