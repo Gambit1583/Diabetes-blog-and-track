@@ -5,12 +5,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Django-Setup</title>
+    <title>GlucoPath Home Page</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}" >
 </head>
 <body>
-    <h1>Hello Django From Heroku</h1>
-    
+    <header>
+        <h1>Welcome to GlucoPath</h1>
+        <h2>Your home for managing and tracking your diabetes!</h2>
+        <nav>
+            <ul>
+                <li><a href="{% url 'post_list' %}">Blog Posts</a></li>
+               
+            </ul>
+        </nav>
+    </header>
+    <main> <h2>Your Journey to Better Health Management Starts Here</h2> 
+            <p>Blog, Track your progress, connect with specialists, and manage your carbohydrate intake all in one place.</p> 
+        </main> 
+        <footer> 
+            <p>&copy; 2024 Glocopath & Gambit1583 developments. All rights reserved.</p> 
+        </footer>
 </body>
 </html>
 

@@ -1,0 +1,44 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+    <head> 
+        <meta charset="UTF-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <title>{{ post.title }}</title> 
+    </head> <body> 
+        <header> 
+            <h1>{{ post.title }}</h1> 
+            <p>By {{ post.author }} on {{ post.date_posted }}</p> 
+        </header> 
+        <main> 
+            <article> 
+                <p>{{ post.content }}</p> 
+                {% if post.image %} 
+                    <img src="{{ post.image.url }}" alt="Post Image"> 
+                {% endif %} 
+            </article> 
+            <section> 
+                <h2>Comments</h2> 
+                {% for comment in comments %} 
+                    <div> 
+                        <p>{{ comment.author }}: {{ comment.content }}</p> 
+                    </div> 
+                {% empty %} 
+                    <p>No comments yet. Be the first to comment!</p> 
+                {% endfor %} 
+            </section> 
+            {% if user.is_authenticated %} 
+                <section> 
+                    <h2>Add a Comment</h2> 
+                    <form method="post"> 
+                            {% csrf_token %}   
+                            {{ comment_form.as_p }} 
+                            <button type="submit">Post Comment</button> </form> 
+                        </section> {
+                    % else %} 
+                        <p>You must be logged in to add a comment.</p> 
+                    {% endif %} 
+                </main> 
+                <footer> <p>&copy; 2024 Glocopath & Gambit1583 developments. All rights reserved.</p> 
+                </footer> 
+            </body> 
+            </html>

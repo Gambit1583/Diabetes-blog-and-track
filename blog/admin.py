@@ -9,6 +9,13 @@ class PostAdmin(admin.ModelAdmin):
     form = PostForm
     list_display = ('title', 'date_posted', 'author') 
     search_fields = ('title', 'content', 'author')
+    list_filter = ('date_posted', 'author') 
+    fields = ('title', 'content', 'image', 'author', 'date_posted')
+
+    def save_model(self, request, obj, form, change):
+        if not obj.pk: # Only sets the author during first save
+            obj.author = request.user
+        super().save_model(request, obj, form, change)
 
 # Registered models
 

@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
 from .models import Post
-from .forms import PostForm
+from .forms import PostForm, CommentForm
 
 
 class HomePage(TemplateView):
@@ -11,13 +11,13 @@ class HomePage(TemplateView):
     """
     template_name = 'index.html'
 
-# Post views#
+# Post views
 
 # Lists all blog posts
 
 def post_list(request):
     posts = Post.objects.all()
-    return render(request, 'blog/post_list.html', {'posts: posts'})
+    return render(request, 'blog/post_list.html', {'posts': posts})
 
 @login_required
 def post_detail(request, post_id):

@@ -1,0 +1,31 @@
+<html lang="en"> 
+    <head> 
+        <meta charset="UTF-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <title>Blog Posts</title>
+    </head>
+    <body>
+        <header>
+            <h1>Blogger Corner</h1>
+        </header>
+        <main>
+            <section>
+                {% if posts %}
+                    <ul>
+                        {% for post in posts %}
+                            <li>
+                                <h4>{{ post.title }}</h4>
+                                <p>{{ post.content|truncatewords:50 }}</p>
+                                <p><a href="{url 'post_detail' post.id %}">Read More</a></p>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No posts available.</p>
+                {% endif %}
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2024 Glocopath & Gambit1583 developments. All rights reserved.</p>
+        </footer>
+    </body>
