@@ -33,7 +33,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY =  os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['8000-gambit1583-diabetesblog-7jtiw8ewpjm.ws.codeinstitute-ide.net', 'glucopath-4a70779a06be.herokuapp.com']
 
@@ -52,7 +52,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'cloudinary_storage',
     'cloudinary',
-    'blog'
+    'blog',
+    'django_summernote'
 ]
 
 MIDDLEWARE = [
